@@ -1,0 +1,30 @@
+name: Chrome Extension CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # 簡単なファイル存在チェックとJSON構文チェック
+      - name: Check manifest.json
+        run: |
+          if [ -f "manifest.json" ]; then
+            echo "manifest.json exists."
+            jq . manifest.json > /dev/null
+            echo "manifest.json is valid JSON."
+          else
+            echo "manifest.json not found!"
+            exit 1
+          fi
+
+      - name: Check file structure
+        run: |
+          ls -R

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Logger</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Task Logger</h1>
+      <button id="settings-btn" class="icon-btn" title="設定">⚙️</button>
+    </header>
+
+    <main>
+      <!-- Normal View -->
+      <section id="main-view">
+        <section class="record-section">
+          <button id="record-btn" class="primary-btn">
+            <span class="icon">⚡</span> 割り込み / 作業開始
+          </button>
+        </section>
+
+        <section class="stats-section">
+          <h2>今日の記録</h2>
+          <div class="stats-summary">
+            <div class="stats-card">
+              <span class="stats-label">合計回数</span>
+              <span class="stats-value" id="total-count">0</span>
+            </div>
+            <div class="stats-card" style="border-bottom: none; padding-top: 8px;">
+               <span class="stats-label">合計時間</span>
+               <span class="stats-value" id="total-duration">0m</span>
+            </div>
+            <div class="chart-container">
+              <div id="pie-chart" class="pie-chart"></div>
+              <div id="legend" class="legend"></div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- Tracking View (Hidden by default) -->
+      <section id="tracking-view" class="hidden">
+        <div class="tracking-card">
+          <h2 class="tracking-title">計測中...</h2>
+          <div class="tracking-category" id="current-category">カテゴリ</div>
+          <div class="tracking-timer" id="timer">00:00:00</div>
+
+          <div class="input-container">
+            <select id="task-type" class="task-type-select">
+                <!-- Dynamic Options -->
+            </select>
+          </div>
+
+          <div class="input-container">
+            <input type="text" id="task-memo" class="memo-input" placeholder="詳細メモ（任意）" />
+          </div>
+
+          <div class="tracking-actions">
+            <button id="complete-btn" class="complete-btn">完了 (記録)</button>
+            <button id="discard-btn" class="text-btn fail-color">キャンセル</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Settings View (Hidden by default) -->
+      <section id="settings-view" class="hidden">
+        <h2>設定</h2>
+
+        <!-- Category Settings -->
+        <h3 class="settings-subtitle">カテゴリ（プロジェクト）</h3>
+        <div class="settings-content">
+            <div id="settings-list" class="settings-list">
+                <!-- Dynamic Items -->
+            </div>
+            <div class="add-form">
+                <input type="text" id="new-category-input" placeholder="新規カテゴリ名" />
+                <button id="add-category-btn" class="small-btn">追加</button>
+            </div>
+        </div>
+
+        <!-- Task Type Settings -->
+        <h3 class="settings-subtitle">工程（Task Types）</h3>
+        <div class="settings-content">
+            <div id="settings-type-list" class="settings-list">
+                <!-- Dynamic Items -->
+            </div>
+            <div class="add-form">
+                <input type="text" id="new-type-input" placeholder="新規工程名" />
+                <button id="add-type-btn" class="small-btn">追加</button>
+            </div>
+        </div>
+
+        <div class="settings-footer">
+            <button id="close-settings-btn" class="secondary-btn">戻る</button>
+        </div>
+      </section>
+
+      <div id="category-modal" class="modal hidden">
+        <div class="modal-content">
+          <h3>カテゴリを選択</h3>
+          <div id="category-list-container" class="category-list">
+            <!-- Dynamic Buttons will be injected here -->
+          </div>
+          <button id="cancel-btn" class="text-btn">キャンセル</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <button id="export-btn" class="secondary-btn">CSV書き出し</button>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
