@@ -35,7 +35,14 @@ git commit -m "Update extension"
 git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/interruption-tracker.git
 git push -u origin main
+git push -u origin main
 ```
+
+### GitHub Actions (CI)
+
+This repository includes a GitHub Actions workflow (`.github/workflows/main.yml`) that automatically runs on every push and pull request to the `main` branch.
+- **Checks**: content of `manifest.json` (valid JSON) and file structure.
+- **Usage**: Simply push your changes, and the "Actions" tab in GitHub will show the build status.
 
 ## License
 
@@ -80,4 +87,11 @@ git commit -m "Update extension"
 git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/task-logger.git
 git push -u origin main
+git push -u origin main
 ```
+
+### GitHub Actions (CI)
+
+このリポジトリには GitHub Actions ワークフロー (`.github/workflows/main.yml`) が含まれており、`main` ブランチへのプッシュやプルリクエスト時に自動的に実行されます。
+- **チェック内容**: `manifest.json` の構文チェックと基本的なファイル構成の確認。
+- **使い方**: 変更をプッシュするだけで、GitHubの「Actions」タブで実行結果（成功/失敗）を確認できます。
